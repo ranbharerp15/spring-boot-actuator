@@ -1,0 +1,18 @@
+global:
+  resolve_timeout: 5m
+
+route:
+  receiver: email.config // name of the receiver
+  group_by: ['alertname']	// grouping param for multiple alerts
+  group_wait: 15s	
+  group_interval: 15s
+  repeat_interval: 5m
+receivers:
+- name: 'email.config'
+  email_configs:
+    - to: '<receiver_emailaddress1, receiver_emailaddress2>'
+      from: '<sender_emailaddress>'
+      smarthost: 'smtp.gmail.com:587'
+      auth_username: '<sender_emailaddress>'
+      auth_identity: '<sender_emailaddress>'
+      auth_password: '<sender_pwd>'
